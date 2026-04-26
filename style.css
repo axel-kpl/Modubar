@@ -9,51 +9,6 @@
     --font-main: 'Inter', sans-serif;
 }
 
-
-/* =========================================
-   NOUVELLE SECTION : STATISTIQUES 
-   ========================================= */
-
-.section-stats {
-    padding: 4rem 5%;
-    background-color: var(--bg-alt);
-    border-bottom: 1px solid #222;
-}
-
-.stats-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    text-align: center;
-}
-
-.stat-item {
-    padding: 1rem;
-}
-
-.stat-number {
-    font-size: 3.5rem;
-    font-weight: 800;
-    color: var(--brand-red);
-    line-height: 1;
-    margin-bottom: 0.5rem;
-}
-
-.stat-label {
-    color: var(--text-muted);
-    font-size: 0.95rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-}
-
-/* Rendre les stats responsives sur mobile */
-@media (max-width: 768px) {
-    .stats-grid {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-}
 /* Reset de base */
 * {
     margin: 0;
@@ -61,12 +16,20 @@
     box-sizing: border-box;
 }
 
+/* RÈGLE CRUCIALE POUR EMPÊCHER LES IMAGES DE CASSER LE SITE */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px; /* Optionnel, pour adoucir les bords */
+}
+
 body {
     font-family: var(--font-main);
     background-color: var(--bg-main);
     color: var(--text-main);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
 }
 
 /* Typographie */
@@ -161,6 +124,7 @@ nav.scrolled {
     padding: 1rem 3rem;
     font-size: 1.1rem;
     margin-top: 1.5rem;
+    width: 100%; /* S'adapte mieux sur la carte de prix */
 }
 
 /* Hero Section */
@@ -188,6 +152,40 @@ nav.scrolled {
     font-size: 1.2rem;
     color: var(--text-muted);
     margin-bottom: 2.5rem;
+}
+
+/* Section Statistiques */
+.section-stats {
+    padding: 4rem 5%;
+    background-color: var(--bg-alt);
+    border-bottom: 1px solid #222;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    text-align: center;
+}
+
+.stat-item {
+    padding: 1rem;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--brand-red);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
 }
 
 /* Sections communes */
@@ -246,10 +244,11 @@ nav.scrolled {
     top: 0;
 }
 
-/* Placeholders pour images */
+/* Placeholders pour images (Ajusté pour que l'image à l'intérieur s'adapte) */
 .image-placeholder {
     width: 100%;
-    height: 400px;
+    height: auto;
+    min-height: 400px; /* Assure une hauteur minimale si vide */
     background-color: #2a2a30;
     border: 2px dashed #444;
     border-radius: 8px;
@@ -258,10 +257,9 @@ nav.scrolled {
     justify-content: center;
     color: var(--text-muted);
     text-align: center;
-    padding: 2rem;
-    object-fit: cover;
+    padding: 1rem; /* Modifié pour laisser la place à l'image */
+    overflow: hidden; /* Cache ce qui déborde */
 }
-
 
 /* Carte Prix */
 .pricing-card {
@@ -293,6 +291,7 @@ nav.scrolled {
     background-color: rgba(255,255,255,0.03);
     padding: 1.5rem;
     border-radius: 6px;
+    margin-bottom: 1.5rem;
 }
 
 .shipping-info h4 {
@@ -315,23 +314,62 @@ footer .logo {
     margin-bottom: 1rem;
 }
 
-/* Responsive */
+/* =========================================
+   MEDIA QUERIES (RENDRE LE SITE RESPONSIVE)
+   ========================================= */
 @media (max-width: 768px) {
+    /* Cache le menu desktop (idéalement à remplacer par un burger menu) */
     .nav-links {
-        display: none; /* Menu burger nécessaire pour un vrai site mobile, masqué ici pour la simplicité */
+        display: none; 
     }
     
+    /* Ajustement du texte de présentation (Hero) */
     .hero-content h1 {
         font-size: 2.5rem;
     }
+    .hero-content p {
+        font-size: 1rem;
+    }
     
+    /* Titres des sections plus petits */
+    h2 {
+        font-size: 2rem;
+    }
+
+    /* Réduction du padding général pour gagner de l'espace sur mobile */
+    .section {
+        padding: 4rem 5%;
+    }
+    
+    /* Grilles sur une seule colonne */
     .grid-2 {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
     
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    /* Inverse l'ordre du texte et de l'image sur mobile */
     .reverse-mobile {
         display: flex;
         flex-direction: column-reverse;
+        gap: 2rem; /* Important pour garder l'espace dans une flexbox */
+    }
+    
+    /* Taille de la section d'image si elle est vide */
+    .image-placeholder {
+        min-height: 250px;
+    }
+
+    /* Ajustements pour la carte de prix */
+    .pricing-card {
+        padding: 1.5rem; /* Moins de marge interne pour mobile */
+        margin: 2rem auto 0;
+    }
+    .price {
+        font-size: 3rem;
     }
 }
