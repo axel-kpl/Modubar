@@ -31,5 +31,5 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 
 // Interaction basique pour le bouton d'achat
 document.getElementById('buyBtn').addEventListener('click', () => {
-    alert("Merci pour votre intérêt envers Modubar™ ! La page de paiement sécurisée s'ouvrirait ici.");
+    alert("Thank you for your interest! The Modubar is a project made by Ilyass and Axel. You cannnot buy it ! Sorry :) ");
 });
